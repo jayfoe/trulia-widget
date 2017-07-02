@@ -5,10 +5,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <label>
-          Field:
-          <input />
-        </label>
+        <p>delete me</p>
       </div>
     );
   }

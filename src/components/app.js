@@ -5,10 +5,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <label>
-          Monthly Savings:
-          <input />
-        </label>
+        <p>hello trulia</p>
       </div>
     );
   }
