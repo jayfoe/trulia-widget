@@ -1,0 +1,45 @@
+{
+  "name": "trulia-widget",
+  "version": "1.0.0",
+  "description": "Trulia widget coding challenge",
+  "main": "./src/client.js",
+  "scripts": {
+    "nodemon": "nodemon --watch server --watch config --watch bin ./bin/www",
+    "webpack-watch": "./node_modules/webpack/bin/webpack.js -w",
+    "express-server": "node ./server",
+    "start": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayfoe/trulia-widget.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayfoe/trulia-widget/issues"
+  },
+  "homepage": "https://github.com/jayfoe/trulia-widget#readme",
+  "dependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-1": "^6.22.0",
+    "babel-register": "^6.24.0",
+    "concurrently": "^3.4.0",
+    "express": "^4.15.2",
+    "nodemon": "^1.11.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-promise": "^0.5.3",
+    "webpack": "^2.3.2"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "style-loader": "^0.16.1"
+  }
+}
