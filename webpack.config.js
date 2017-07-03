@@ -18,8 +18,12 @@ module.exports = {
         loader: 'babel-loader'
       },
       { 
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
-        loader: 'url-loader?limit=100000' 
+        test: /\.less/, 
+        loader: 'style-loader!css-loader!less-loader' 
+      },
+      { 
+        test: /\.(woff2|woff|ttf|svg|eot)$/, 
+        loader: 'file-loader' 
       }
     ]
   },
