@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { ButtonGroup, Button } from 'react-bootstrap';
 
 class ButtonsGroup extends Component {
   render() {
     return (
-      <div>
-        <button>Price</button>
-        <button>Beds</button>
-        <button>Sq. ft.</button>
-      </div>
+      <ButtonGroup>
+        <Button>Price</Button>
+        <Button>Beds</Button>
+        <Button>Sq. ft.</Button>
+      </ButtonGroup>
     );
   }
 }
