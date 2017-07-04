@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Thumbnail } from 'react-bootstrap';
+import { Col, Thumbnail } from 'react-bootstrap';
 
-const ListHome = ({address}) => {
-  console.log(address);
-  if (typeof(address) === "string");
-    return (
-      <div>{address}</div>
-    );
+const ListHome = ({home}) => {
+  return (
+    <Col xs={4}>
+      <Thumbnail src={home.img} alt="242x200">
+        <h3>{home.address}</h3>
+        <p>{home.beds} beds</p>
+        <p>{home.baths} baths</p>
+        <p>{home.sq_ft} sq ft</p>
+      </Thumbnail>
+    </Col>
+  )
 }
 
 export default ListHome;
