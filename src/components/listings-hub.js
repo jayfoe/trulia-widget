@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Thumbnail } from 'react-bootstrap';
 import axios from 'axios';
-import $ from 'jquery';
+import ListHome from './list-home';
 
 class ListingsHub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      batmanData: {},
-      supermanData: {}
+      supermanData: {},
+      batmanArray: []
     }
   }
 
@@ -18,8 +18,17 @@ class ListingsHub extends Component {
         let str = response.data;
         let cleaned = str.substring(str.lastIndexOf("=")+1,str.lastIndexOf(";"));
         let batmanData = JSON.parse(cleaned);
-        this.setState({ batmanData });
-        console.log(cleaned);
+        let batmanArray = [];
+
+        for (var key in batmanData) {
+          if (batmanData.hasOwnProperty(key)) {
+            batmanData[key].address = key;
+            batmanArray.push(batmanData[key]);
+          }
+        }
+
+        this.setState({ batmanArray });
+
       })
 
     axios.get('/data/supermanRealty.json')
@@ -27,35 +36,14 @@ class ListingsHub extends Component {
         let str = response.data;
         let cleaned = str.substring(str.lastIndexOf("=")+1,str.lastIndexOf(";"));
         let supermanData = JSON.parse(cleaned);
-        this.setState({ supermanData });
-        console.log(cleaned);
+        this.setState({ supermanData: supermanData.items });
+        console.log(this.state);
       })
   }
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col xs={4}>
-            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-              <h3>Thumbnail label</h3>
-              <p>Description</p>
-            </Thumbnail>
-          </Col>
-          <Col xs={4}>
-            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-              <h3>Thumbnail label</h3>
-              <p>Description</p>
-            </Thumbnail>
-          </Col>
-          <Col xs={4}>
-            <Thumbnail src="/assets/thumbnaildiv.png" alt="242x200">
-              <h3>Thumbnail label</h3>
-              <p>Description</p>
-            </Thumbnail>
-          </Col>
-        </Row>
-      </Grid>
+      <p>?</p>
     );
   }
 }
