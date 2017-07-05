@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Row } from 'react-bootstrap';
-import axios from 'axios';
 import ListHome from './list-home';
 
 class ListingsHub extends Component {
@@ -13,37 +12,24 @@ class ListingsHub extends Component {
   }
 
   componentDidMount() {
-    axios.get('/data/batmanRealty.json')
-      .then((response) => {
-        let str = response.data;
-        let cleaned = str.substring(str.lastIndexOf("=")+1,str.lastIndexOf(";"));
-        let batmanData = JSON.parse(cleaned);
-        let batmanArray = [];
+    let batmanData = window.__BATMAN_DATA__;
+    let batmanArray = [];
 
-        for (var key in batmanData) {
-          if (batmanData.hasOwnProperty(key)) {
-            batmanData[key].address = key;
-            batmanArray.push(batmanData[key]);
-          }
-        }
+    for (var key in batmanData) {
+      if (batmanData.hasOwnProperty(key)) {
+        batmanData[key].address = key;
+        batmanArray.push(batmanData[key]);
+      }
+    }
+    this.setState({ batmanArray });
 
-        this.setState({ batmanArray });
-
-      })
-
-    axios.get('/data/supermanRealty.json')
-      .then((response) => {
-        let str = response.data;
-        let cleaned = str.substring(str.lastIndexOf("=")+1,str.lastIndexOf(";"));
-        let supermanData = JSON.parse(cleaned);
-        this.setState({ supermanData: supermanData.items });
-        //console.log(this.state);
-      })
+    let supermanData = window.__SUPERMAN_DATA__;
+    this.setState({ supermanData: supermanData.items });
   }
 
   render() {
     let batmanGroup = this.state.batmanArray.map((item) => {
-      return <ListHome home={item} key={item.address}/>
+      return <ListHome home={item} key={item.address} />
     });
 
     return (
