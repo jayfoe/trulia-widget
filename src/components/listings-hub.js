@@ -6,8 +6,8 @@ class ListingsHub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      supermanData: {},
-      batmanArray: []
+      batmanArray: [],
+      supermanArray: []
     }
   }
 
@@ -15,16 +15,16 @@ class ListingsHub extends Component {
     let batmanData = window.__BATMAN_DATA__;
     let batmanArray = [];
 
-    for (var key in batmanData) {
+    for (let key in batmanData) {
       if (batmanData.hasOwnProperty(key)) {
         batmanData[key].address = key;
         batmanArray.push(batmanData[key]);
       }
     }
-    this.setState({ batmanArray });
 
-    let supermanData = window.__SUPERMAN_DATA__;
-    this.setState({ supermanData: supermanData.items });
+    let supermanData = window.__SUPERMAN_DATA__.items;
+
+    this.setState({ batmanArray, supermanArray: supermanData });
   }
 
   render() {
