@@ -11,7 +11,7 @@ class ListingsHub extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let batmanData = window.__BATMAN_DATA__;
     let batmanArray = [];
 
