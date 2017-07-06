@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Col, Thumbnail } from 'react-bootstrap';
+import { Col, Thumbnail, Image } from 'react-bootstrap';
 
 const ListHome = ({home}) => {
   return (
-    <Col xs={4}>
-      <Thumbnail src={home.img} alt="242x200">
-        <h3>{home.address}</h3>
-        <p>{home.beds} beds</p>
-        <p>{home.baths} baths</p>
-        <p>{home.sq_ft} sq ft</p>
-      </Thumbnail>
+    <Col xs={6}>
+      <Image src={home.img} href={home.url} alt="242x200" thumbnail responsive />
+      <h4>{home.address}</h4>
+      <h3>${home.cost}</h3>
+      <p>{home.beds} beds</p>
+      <p>{home.baths} baths</p>
+      <p>{home.sq_ft} sq ft</p>
     </Col>
   )
 }
