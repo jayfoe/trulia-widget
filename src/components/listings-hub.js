@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row } from 'react-bootstrap';
+import { Grid, Row, ListGroup } from 'react-bootstrap';
 import ListHome from './list-home';
 import $ from 'jquery';
 
@@ -57,12 +57,10 @@ class ListingsHub extends Component {
     });
 
     return (
-      <Grid>
-        <Row>
+      <ListGroup>
           {batmanGroup || 'Please wait, loading listings...'}
           {doubleData}
-        </Row>
-      </Grid>
+      </ListGroup>
     );
   }
 }
