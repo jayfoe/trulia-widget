@@ -9,10 +9,11 @@ const ListHome = ({home}) => {
         <h4>{home.address}</h4>
       </a>
       <div>
-        <h3>${home.cost}</h3>
-        <p>{home.beds} beds</p>
-        <p>{home.baths} baths</p>
-        <p>{home.sq_ft} sq ft</p>
+        <h3>{home.price}</h3>
+        <p>{home.beds}</p>
+        <p>{home.baths}</p>
+        <p>{home.sqft}</p>
+        <p>{home.built}</p>
       </div>
     </ListGroupItem>
   )
