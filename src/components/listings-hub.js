@@ -8,8 +8,6 @@ class ListingsHub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      batmanArray: [],
-      supermanArray: [],
       finalData: []
     }
   }
@@ -100,7 +98,7 @@ class ListingsHub extends Component {
     //   url: batmanObject.url || supermanObject.url
     // }
 
-    this.setState({ batmanArray, supermanArray: supermanData, finalData });
+    this.setState({ finalData });
   }
 
   render() {
