@@ -25,10 +25,10 @@ class ListingsHub extends Component {
     for (let i = 0; i < batmanArray.length; i++) {
       batmanObject.push({
         address: batmanArray[i].address,
-        price: '$' + batmanArray[i].cost,
-        beds: batmanArray[i].beds + ' beds',
-        baths: batmanArray[i].baths + ' baths',
-        sqft: batmanArray[i].sq_ft + ' sq ft',
+        price: batmanArray[i].cost,
+        beds: batmanArray[i].beds,
+        baths: batmanArray[i].baths,
+        sqft: batmanArray[i].sq_ft,
         img: batmanArray[i].img,
         url: batmanArray[i].url
       });
@@ -45,11 +45,11 @@ class ListingsHub extends Component {
     for (let j = 0; j < supermanData.length; j++) {
       supermanObject.push({
         address: supermanData[j].address,
-        price: '$' + supermanData[j].price.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        beds: supermanData[j].beds + ' beds',
-        baths: supermanData[j].baths + ' baths',
-        sqft: supermanData[j].sqft + ' sq ft',
-        built: 'Built in ' + supermanData[j].built,
+        price: supermanData[j].price.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        beds: supermanData[j].beds,
+        baths: supermanData[j].baths,
+        sqft: supermanData[j].sqft,
+        built: supermanData[j].built,
         img: supermanData[j].thumb,
         url: supermanData[j].url
       });
