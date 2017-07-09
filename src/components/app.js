@@ -1,5 +1,4 @@
 import React from 'react';
-import ButtonsGroup from './buttons-group';
 import ListingsHub from './listings-hub';
 
 class App extends React.Component {
@@ -7,7 +6,6 @@ class App extends React.Component {
     return (
       <div>
         <h4>Awesome Listings Widget</h4>
-        <ButtonsGroup />
         <ListingsHub />
       </div>
     );

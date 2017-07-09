@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Col, Thumbnail, Image, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const ListHome = ({home}) => {
-  
-
   return (
     <ListGroupItem>
       <a href={home.url}>

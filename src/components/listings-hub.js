@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Grid, Row, ListGroup } from 'react-bootstrap';
+import { Grid, Row, ListGroup, ButtonGroup, Button } from 'react-bootstrap';
 import ListHome from './list-home';
 import _ from 'lodash';
-import $ from 'jquery';
 
 class ListingsHub extends Component {
   constructor(props) {
@@ -78,8 +77,20 @@ class ListingsHub extends Component {
     for (let key in batmanLookup) {
       mergedData.push(batmanLookup[key])
     }
-    
+
     this.setState({ mergedData });
+  }
+
+  sortListings(sort) {
+    let sortedData = this.state.mergedData;
+    if (sort === 'price') {
+      sortedData = _.sortBy(sortedData, ['price', 'address']);
+    } else if (sort === 'beds') {
+      sortedData = _.sortBy(sortedData, ['beds', 'address']);
+    } else if (sort === 'sqft') {
+      sortedData = _.sortBy(sortedData, ['sqft', 'address']);
+    }
+    this.setState({ mergedData: sortedData });
   }
 
   render() {
@@ -88,9 +99,22 @@ class ListingsHub extends Component {
     });
 
     return (
-      <ListGroup>
-          {listings || 'Please wait, loading listings...'}
-      </ListGroup>
+      <div>
+        <ButtonGroup>
+          <Button onClick={() => this.sortListings('price')}>
+            Price
+          </Button>
+          <Button onClick={() => this.sortListings('beds')}>
+            Beds
+          </Button>
+          <Button onClick={() => this.sortListings('sqft')}>
+            Sq. ft.
+          </Button>
+        </ButtonGroup>
+        <ListGroup>
+            {listings || 'Please wait, loading listings...'}
+        </ListGroup>
+      </div>
     );
   }
 }
