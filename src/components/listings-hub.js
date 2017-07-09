@@ -29,10 +29,10 @@ class ListingsHub extends Component {
     for (let i = 0; i < batmanArray.length; i++) {
       batmanObject.push({
         address: batmanArray[i].address,
-        price: batmanArray[i].cost,
-        beds: batmanArray[i].beds,
-        baths: batmanArray[i].baths,
-        sqft: batmanArray[i].sq_ft,
+        price: '$' + batmanArray[i].cost,
+        beds: batmanArray[i].beds + ' beds',
+        baths: batmanArray[i].baths + ' baths',
+        sqft: batmanArray[i].sq_ft + ' sq ft',
         img: batmanArray[i].img,
         url: batmanArray[i].url
       });
@@ -54,17 +54,40 @@ class ListingsHub extends Component {
       });
     }
 
-    let merged = batmanObject.concat(supermanObject);
-    let mergedSorted = _.sortBy(merged, ['address']);
-
-    let finalData = [];
-    for (let k = 1; k < mergedSorted.length; k++) {
-      if (mergedSorted[k].address !== mergedSorted[k-1].address) {
-        finalData.push(mergedSorted[k-1]);
+    let protoObject = []
+    let supermanProto = supermanObject;
+    for (let i = 0; i < batmanObject.length; i++) {
+      for (let j = 0; j < supermanObject.length; j++) {
+        if (batmanObject[i].address === supermanObject[j].address) {
+          protoObject.push({
+            address: batmanObject[i].address || supermanObject[j].address,
+            price: batmanObject[i].price || supermanObject[j].price,
+            beds: batmanObject[i].beds || supermanObject[j].beds,
+            baths: batmanObject[i].baths || supermanObject[j].baths,
+            sqft: batmanObject[i].sqft || supermanObject[j].sqft,
+            built: batmanObject[i].built || supermanObject[j].built,
+            img: batmanObject[i].img || supermanObject[j].img,
+            url: batmanObject[i].url || supermanObject[j].url
+          })
+          supermanProto.splice(j, 1);
+          j--;
+        }
       }
     }
-    finalData.push(mergedSorted[mergedSorted.length-1]);
-    console.log(finalData);
+    let finalData = protoObject.concat(supermanProto);
+
+    // this works
+    // let merged = batmanObject.concat(supermanObject);
+    // let mergedSorted = _.sortBy(merged, ['address']);
+
+    // let finalData = [];
+    // for (let k = 1; k < mergedSorted.length; k++) {
+    //   if (mergedSorted[k].address !== mergedSorted[k-1].address) {
+    //     finalData.push(mergedSorted[k-1]);
+    //   }
+    // }
+    // finalData.push(mergedSorted[mergedSorted.length-1]);
+    // this works ends here
 
     // let combinedData = {
     //   address: batmanObject.address || supermanObject.address,

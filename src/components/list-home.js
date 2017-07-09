@@ -20,14 +20,3 @@ const ListHome = ({home}) => {
 }
 
 export default ListHome;
-
-
-
-    // <Col xs={6}>
-    //   <Image src={home.img} href={home.url} alt="242x200" thumbnail responsive />
-    //   <h4>{home.address}</h4>
-    //   <h3>${home.cost}</h3>
-    //   <p>{home.beds} beds</p>
-    //   <p>{home.baths} baths</p>
-    //   <p>{home.sq_ft} sq ft</p>
-    // </Col>
