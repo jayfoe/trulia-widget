@@ -8,7 +8,7 @@ class ListingsHub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      finalData: []
+      mergedData: []
     }
   }
 
@@ -18,10 +18,8 @@ class ListingsHub extends Component {
     let batmanObject = [];
 
     for (let key in batmanData) {
-      if (batmanData.hasOwnProperty(key)) {
-        batmanData[key].address = key;
-        batmanArray.push(batmanData[key]);
-      }
+      batmanData[key].address = key;
+      batmanArray.push(batmanData[key]);
     }
 
     for (let i = 0; i < batmanArray.length; i++) {
@@ -34,6 +32,11 @@ class ListingsHub extends Component {
         img: batmanArray[i].img,
         url: batmanArray[i].url
       });
+    }
+
+    var batmanLookup = {};
+    for (var i = 0; i < batmanObject.length; i++) {
+      batmanLookup[batmanObject[i].address] = batmanObject[i];
     }
 
     let supermanData = window.__SUPERMAN_DATA__.items;
@@ -52,57 +55,35 @@ class ListingsHub extends Component {
       });
     }
 
-    let protoObject = []
-    let supermanProto = supermanObject;
-    for (let i = 0; i < batmanObject.length; i++) {
-      for (let j = 0; j < supermanObject.length; j++) {
-        if (batmanObject[i].address === supermanObject[j].address) {
-          protoObject.push({
-            address: batmanObject[i].address || supermanObject[j].address,
-            price: batmanObject[i].price || supermanObject[j].price,
-            beds: batmanObject[i].beds || supermanObject[j].beds,
-            baths: batmanObject[i].baths || supermanObject[j].baths,
-            sqft: batmanObject[i].sqft || supermanObject[j].sqft,
-            built: batmanObject[i].built || supermanObject[j].built,
-            img: batmanObject[i].img || supermanObject[j].img,
-            url: batmanObject[i].url || supermanObject[j].url
-          })
-          supermanProto.splice(j, 1);
-          j--;
-        }
+    let mergedData = [];
+    for (var i = 0; i < supermanObject.length; i++) {
+      if (supermanObject[i].address in batmanLookup) {
+        let key = supermanObject[i].address;
+        mergedData.push({
+          address: batmanLookup[key].address || supermanObject[i].address,
+          price: batmanLookup[key].price || supermanObject[i].price,
+          beds: batmanLookup[key].beds || supermanObject[i].beds,
+          baths: batmanLookup[key].baths || supermanObject[i].baths,
+          sqft: batmanLookup[key].sqft || supermanObject[i].sqft,
+          built: batmanLookup[key].built || supermanObject[i].built,
+          img: batmanLookup[key].img || supermanObject[i].img,
+          url: batmanLookup[key].url || supermanObject[i].url
+        });
+        delete batmanLookup[key];
+      } else {
+        mergedData.push(supermanObject[i]);
       }
     }
-    let finalData = protoObject.concat(supermanProto);
 
-    // this works
-    // let merged = batmanObject.concat(supermanObject);
-    // let mergedSorted = _.sortBy(merged, ['address']);
-
-    // let finalData = [];
-    // for (let k = 1; k < mergedSorted.length; k++) {
-    //   if (mergedSorted[k].address !== mergedSorted[k-1].address) {
-    //     finalData.push(mergedSorted[k-1]);
-    //   }
-    // }
-    // finalData.push(mergedSorted[mergedSorted.length-1]);
-    // this works ends here
-
-    // let combinedData = {
-    //   address: batmanObject.address || supermanObject.address,
-    //   price: batmanObject.price || supermanObject.price,
-    //   beds: batmanObject.beds || supermanObject.beds,
-    //   baths: batmanObject.baths || supermanObject.baths,
-    //   sqft: batmanObject.sqft || supermanObject.sqft,
-    //   built: batmanObject.built || supermanObject.built,
-    //   img: batmanObject.img || supermanObject.img,
-    //   url: batmanObject.url || supermanObject.url
-    // }
-
-    this.setState({ finalData });
+    for (let key in batmanLookup) {
+      mergedData.push(batmanLookup[key])
+    }
+    
+    this.setState({ mergedData });
   }
 
   render() {
-    let listings = this.state.finalData.map((item) => {
+    let listings = this.state.mergedData.map((item) => {
       return <ListHome home={item} key={item.address} />
     });
 
