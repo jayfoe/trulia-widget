@@ -5,7 +5,7 @@ const ListHome = ({home}) => {
   return (
     <div className="thumbnail col-xs-12 col-md-6 home-container">
       <a className="thumbnail-link" href={home.url}>
-        <img className="preview" src={home.img} href={home.url} alt="242x200" />
+        <img className="preview" src={home.img} href={home.url} />
         {home.street && <h4>{home.street}</h4>}
         {home.city && <h4> {home.city}</h4>}
       </a>
@@ -16,8 +16,6 @@ const ListHome = ({home}) => {
         {home.baths && <p>{home.baths} baths</p>}
         {home.sqft && <p> &middot; </p>}
         {home.sqft && <p>{home.sqft} sq ft</p>}
-        {home.built && <p> &middot; </p>}
-        {home.built && <p>Built in {home.built}</p>}
       </div>
     </div>
   )
