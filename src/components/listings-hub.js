@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Grid, Row, ListGroup, ButtonGroup, Button } from 'react-bootstrap';
-import ListHome from './list-home';
 import _ from 'lodash';
+import styles from '../style/listings-hub.css';
+import ListHome from './list-home';
+
 
 class ListingsHub extends Component {
   constructor(props) {
@@ -22,8 +23,13 @@ class ListingsHub extends Component {
     }
 
     for (let i = 0; i < batmanArray.length; i++) {
+      let batmanStreet = batmanArray[i].address.substring(0, batmanArray[i].address.indexOf(','));
+      let batmanCity = batmanArray[i].address.substring(batmanArray[i].address.indexOf(',')+2);
+
       batmanObject.push({
         address: batmanArray[i].address,
+        street: batmanStreet,
+        city: batmanCity,
         price: batmanArray[i].cost,
         beds: batmanArray[i].beds,
         baths: batmanArray[i].baths,
@@ -40,19 +46,24 @@ class ListingsHub extends Component {
 
     let supermanData = window.__SUPERMAN_DATA__.items;
     let supermanObject = [];
+    for (let i = 0; i < supermanData.length; i++) {
+      let supermanStreet = supermanData[i].address.substring(0, supermanData[i].address.indexOf(','));
+      let supermanCity = supermanData[i].address.substring(supermanData[i].address.indexOf(',')+2);
 
-    for (let j = 0; j < supermanData.length; j++) {
       supermanObject.push({
-        address: supermanData[j].address,
-        price: supermanData[j].price.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-        beds: supermanData[j].beds,
-        baths: supermanData[j].baths,
-        sqft: supermanData[j].sqft,
-        built: supermanData[j].built,
-        img: supermanData[j].thumb,
-        url: supermanData[j].url
+        address: supermanData[i].address,
+        street: supermanStreet,
+        city: supermanCity,
+        price: supermanData[i].price.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+        beds: supermanData[i].beds,
+        baths: supermanData[i].baths,
+        sqft: supermanData[i].sqft,
+        built: supermanData[i].built,
+        img: supermanData[i].thumb,
+        url: supermanData[i].url
       });
     }
+
 
     let mergedData = [];
     for (var i = 0; i < supermanObject.length; i++) {
@@ -60,6 +71,8 @@ class ListingsHub extends Component {
         let key = supermanObject[i].address;
         mergedData.push({
           address: batmanLookup[key].address || supermanObject[i].address,
+          street: batmanLookup[key].street || supermanObject[i].street,
+          city: batmanLookup[key].city || supermanObject[i].city,
           price: batmanLookup[key].price || supermanObject[i].price,
           beds: batmanLookup[key].beds || supermanObject[i].beds,
           baths: batmanLookup[key].baths || supermanObject[i].baths,
@@ -99,21 +112,21 @@ class ListingsHub extends Component {
     });
 
     return (
-      <div>
-        <ButtonGroup>
-          <Button onClick={() => this.sortListings('price')}>
+      <div className='listings-hub'>
+        <div className='buttons-container'>
+          <button onClick={() => this.sortListings('price')}>
             Price
-          </Button>
-          <Button onClick={() => this.sortListings('beds')}>
+          </button>
+          <button onClick={() => this.sortListings('beds')}>
             Beds
-          </Button>
-          <Button onClick={() => this.sortListings('sqft')}>
+          </button>
+          <button onClick={() => this.sortListings('sqft')}>
             Sq. ft.
-          </Button>
-        </ButtonGroup>
-        <ListGroup>
-            {listings || 'Please wait, loading listings...'}
-        </ListGroup>
+          </button>
+        </div>
+        <div className='col-xs-8 col-xs-offset-2 listings-container'>
+          {listings || 'Please wait, loading listings...'}
+        </div>
       </div>
     );
   }
