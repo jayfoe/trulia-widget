@@ -1,5 +1,23 @@
 .listings-hub {
-  padding: 0 50px;
+  padding: 0 15%;
+}
+
+.btn-default {
+  border: 0;
+  width: 100px;
+  margin: 0 2.5px;
+  color: #ffffff;
+  background-color: #89d128;
+}
+
+.btn-default:hover {
+  background-color: #1377ff;
+  color: #ffffff;
+}
+
+.btn-default:focus {
+  background-color: #1377ff;
+  color: #ffffff;
 }
 
 .buttons-container {

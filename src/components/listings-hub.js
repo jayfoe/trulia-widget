@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../style/listings-hub.css';
 import ListHome from './list-home';
+import { Button } from 'react-bootstrap';
 
 
 class ListingsHub extends Component {
@@ -120,15 +121,15 @@ class ListingsHub extends Component {
       <div className='listings-hub'>
         <h4>Awesome Listings Widget</h4>
         <div className='buttons-container'>
-          <button onClick={() => this.sortListings('price')}>
+          <Button onClick={() => this.sortListings('price')}>
             Price
-          </button>
-          <button onClick={() => this.sortListings('beds')}>
+          </Button>
+          <Button onClick={() => this.sortListings('beds')}>
             Beds
-          </button>
-          <button onClick={() => this.sortListings('sqft')}>
+          </Button>
+          <Button onClick={() => this.sortListings('sqft')}>
             Sq. ft.
-          </button>
+          </Button>
         </div>
         <ul className='listings-container'>
           {listings || 'Please wait, loading listings...'}

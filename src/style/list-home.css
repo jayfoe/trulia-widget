@@ -2,7 +2,9 @@
   margin-bottom: 5px;
 }
 
-h4 {
+.thumbnail-link.preview > h4 {
+  margin: 0;
+  color: 1377ff;
   display: block;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -23,4 +25,11 @@ h4 {
 
 .home-data .home-details > p {
   display: inline;
+}
+
+.home-built {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 75%;
 }
