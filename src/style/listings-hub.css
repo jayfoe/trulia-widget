@@ -22,4 +22,12 @@
 
 .buttons-container {
   padding-bottom: 10px;
+  display: flex;
+}
+
+@media (max-width:480px) {
+  .btn-default {
+    width: 75px;
+    flex: 1;
+  }
 }
