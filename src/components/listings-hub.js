@@ -39,8 +39,8 @@ class ListingsHub extends Component {
       });
     }
 
-    var batmanLookup = {};
-    for (var i = 0; i < batmanObject.length; i++) {
+    let batmanLookup = {};
+    for (let i = 0; i < batmanObject.length; i++) {
       batmanLookup[batmanObject[i].address] = batmanObject[i];
     }
 
@@ -66,7 +66,7 @@ class ListingsHub extends Component {
 
 
     let mergedData = [];
-    for (var i = 0; i < supermanObject.length; i++) {
+    for (let i = 0; i < supermanObject.length; i++) {
       if (supermanObject[i].address in batmanLookup) {
         let key = supermanObject[i].address;
         mergedData.push({
