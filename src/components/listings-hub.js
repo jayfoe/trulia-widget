@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../style/listings-hub.css';
+import '../style/listings-hub.css';
 import ListHome from './list-home';
 import { Button } from 'react-bootstrap';
 

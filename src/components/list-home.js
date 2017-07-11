@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../style/list-home.css';
+import '../style/list-home.css';
 
 const ListHome = ({home}) => {
   return (

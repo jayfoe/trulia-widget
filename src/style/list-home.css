@@ -25,6 +25,9 @@
 
 .home-data .home-details > p {
   display: inline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .home-built {
