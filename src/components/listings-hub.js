@@ -94,14 +94,20 @@ class ListingsHub extends Component {
     this.setState({ mergedData });
   }
 
-  sortListings(sort) {
+  sortListings(sortOrder) {
     let sortedData = this.state.mergedData;
-    if (sort === 'price') {
-      sortedData = _.sortBy(sortedData, ['price', 'address']);
-    } else if (sort === 'beds') {
-      sortedData = _.sortBy(sortedData, ['beds', 'address']);
-    } else if (sort === 'sqft') {
-      sortedData = _.sortBy(sortedData, ['sqft', 'address']);
+    if (sortOrder === 'price') {
+      sortedData = sortedData.sort((a, b) => {
+        return (a.price.replace(/,/g,'') - b.price.replace(/,/g,''));
+      });
+    } else if (sortOrder === 'beds') {
+      sortedData = sortedData.sort((a, b) => {
+        return (a.beds - b.beds);
+      });
+    } else if (sortOrder === 'sqft') {
+      sortedData = sortedData.sort((a, b) => {
+        return (a.sqft - b.sqft);
+      });
     }
     this.setState({ mergedData: sortedData });
   }
@@ -113,6 +119,7 @@ class ListingsHub extends Component {
 
     return (
       <div className='listings-hub'>
+        <h4>Awesome Listings Widget</h4>
         <div className='buttons-container'>
           <button onClick={() => this.sortListings('price')}>
             Price
@@ -124,9 +131,9 @@ class ListingsHub extends Component {
             Sq. ft.
           </button>
         </div>
-        <div className='col-xs-8 col-xs-offset-2 listings-container'>
+        <ul className='listings-container'>
           {listings || 'Please wait, loading listings...'}
-        </div>
+        </ul>
       </div>
     );
   }

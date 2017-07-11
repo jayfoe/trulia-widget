@@ -4,10 +4,7 @@ import ListingsHub from './listings-hub';
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h4>Awesome Listings Widget</h4>
-        <ListingsHub />
-      </div>
+      <ListingsHub />
     );
   }
 }
