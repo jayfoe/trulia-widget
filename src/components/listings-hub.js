@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import styles from '../style/listings-hub.css';
 import ListHome from './list-home';
 
