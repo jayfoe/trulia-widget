@@ -7,7 +7,9 @@ import { Button } from 'react-bootstrap';
 class ListingsHub extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      mergedData: this.props.mergedData
+    }
   }
 
   sortListings(sortOrder) {
@@ -29,7 +31,7 @@ class ListingsHub extends Component {
   }
 
   render() {
-    let listings = this.props.mergedData.map((item) => {
+    let listings = this.state.mergedData.map((item) => {
       return <ListHome home={item} key={item.address} />
     });
 
