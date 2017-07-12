@@ -1,10 +1,10 @@
 import React from 'react';
-import ListingsHub from './listings-hub';
+import GetHomes from './get-homes';
 
 class App extends React.Component {
   render() {
     return (
-      <ListingsHub />
+      <GetHomes />
     );
   }
 }
