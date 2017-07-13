@@ -5,42 +5,33 @@ class GetHomes extends Component {
   componentWillMount() {
     let batmanData = window.__BATMAN_DATA__;
     let batmanArray = [];
-    let batmanObject = [];
 
     for (let key in batmanData) {
-      batmanData[key].address = key;
-      batmanArray.push(batmanData[key]);
-    }
-
-    for (let i = 0; i < batmanArray.length; i++) {
-      let batmanStreet = batmanArray[i].address.substring(0, batmanArray[i].address.indexOf(','));
-      let batmanCity = batmanArray[i].address.substring(batmanArray[i].address.indexOf(',')+2);
-
-      batmanObject.push({
-        address: batmanArray[i].address,
-        street: batmanStreet,
-        city: batmanCity,
-        price: batmanArray[i].cost,
-        beds: batmanArray[i].beds,
-        baths: batmanArray[i].baths,
-        sqft: batmanArray[i].sq_ft,
-        img: batmanArray[i].img,
-        url: batmanArray[i].url
+      batmanArray.push({
+        address: key,
+        street: key.substring(0, key.indexOf(',')),
+        city: key.substring(key.indexOf(',')+2),
+        price: batmanData[key].cost,
+        beds: batmanData[key].beds,
+        baths: batmanData[key].baths,
+        sqft: batmanData[key].sq_ft,
+        img: batmanData[key].img,
+        url: batmanData[key].url
       });
     }
 
     let batmanLookup = {};
-    for (let i = 0; i < batmanObject.length; i++) {
-      batmanLookup[batmanObject[i].address] = batmanObject[i];
+    for (let i = 0; i < batmanArray.length; i++) {
+      batmanLookup[batmanArray[i].address] = batmanArray[i];
     }
 
     let supermanData = window.__SUPERMAN_DATA__.items;
-    let supermanObject = [];
+    let supermanArray = [];
     for (let i = 0; i < supermanData.length; i++) {
       let supermanStreet = supermanData[i].address.substring(0, supermanData[i].address.indexOf(','));
       let supermanCity = supermanData[i].address.substring(supermanData[i].address.indexOf(',')+2);
 
-      supermanObject.push({
+      supermanArray.push({
         address: supermanData[i].address,
         street: supermanStreet,
         city: supermanCity,
@@ -55,24 +46,24 @@ class GetHomes extends Component {
     }
 
     let mergedData = [];
-    for (let i = 0; i < supermanObject.length; i++) {
-      if (supermanObject[i].address in batmanLookup) {
-        let key = supermanObject[i].address;
+    for (let i = 0; i < supermanArray.length; i++) {
+      if (supermanArray[i].address in batmanLookup) {
+        let key = supermanArray[i].address;
         mergedData.push({
-          address: batmanLookup[key].address || supermanObject[i].address,
-          street: batmanLookup[key].street || supermanObject[i].street,
-          city: batmanLookup[key].city || supermanObject[i].city,
-          price: batmanLookup[key].price || supermanObject[i].price,
-          beds: batmanLookup[key].beds || supermanObject[i].beds,
-          baths: batmanLookup[key].baths || supermanObject[i].baths,
-          sqft: batmanLookup[key].sqft || supermanObject[i].sqft,
-          built: batmanLookup[key].built || supermanObject[i].built,
-          img: batmanLookup[key].img || supermanObject[i].img,
-          url: batmanLookup[key].url || supermanObject[i].url
+          address: batmanLookup[key].address || supermanArray[i].address,
+          street: batmanLookup[key].street || supermanArray[i].street,
+          city: batmanLookup[key].city || supermanArray[i].city,
+          price: batmanLookup[key].price || supermanArray[i].price,
+          beds: batmanLookup[key].beds || supermanArray[i].beds,
+          baths: batmanLookup[key].baths || supermanArray[i].baths,
+          sqft: batmanLookup[key].sqft || supermanArray[i].sqft,
+          built: batmanLookup[key].built || supermanArray[i].built,
+          img: batmanLookup[key].img || supermanArray[i].img,
+          url: batmanLookup[key].url || supermanArray[i].url
         });
         delete batmanLookup[key];
       } else {
-        mergedData.push(supermanObject[i]);
+        mergedData.push(supermanArray[i]);
       }
     }
 
