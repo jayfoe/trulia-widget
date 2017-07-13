@@ -31,6 +31,12 @@
   display: inline;
 }
 
+.home-data > h3 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .home-built {
   position: absolute;
   top: 0;
@@ -39,8 +45,12 @@
 }
 
 @media (max-width:480px) {
-  h4 {
+  .thumbnail-link > h4 {
     margin: 0;
+    color: #1377ff;
+    text-overflow: unset;
+    white-space: unset;
+    overflow: unset;
   }
 
   h3 {
