@@ -1,10 +1,11 @@
 import React from 'react';
-import GetHomes from './get-homes';
+import getHomes from './get-homes';
+import ListingsHub from './listings-hub';
 
 class App extends React.Component {
   render() {
     return (
-      <GetHomes />
+      <ListingsHub mergedData={getHomes()} />
     );
   }
 }

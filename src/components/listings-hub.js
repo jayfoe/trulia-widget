@@ -17,7 +17,7 @@ class ListingsHub extends Component {
     let sortedData = this.state.mergedData;
     if (sortedBy === 'price') {
       sortedData = sortedData.sort((a, b) => {
-        return (a.price.replace(/,/g,'') - b.price.replace(/,/g,''));
+        return (parseInt(a.price.replace(/,/g,'')) - parseInt(b.price.replace(/,/g,'')));
       });
     } else if (sortedBy === 'beds') {
       sortedData = sortedData.sort((a, b) => {
@@ -51,7 +51,7 @@ class ListingsHub extends Component {
           </Button>
         </div>
         <ul className='listings-container'>
-          {listings || 'Please wait, loading listings...'}
+          {listings || <li>Please wait, loading listings...</li>}
         </ul>
       </div>
     );
