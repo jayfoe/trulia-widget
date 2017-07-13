@@ -1,3 +1,9 @@
+To begin:
+
+`npm install`
+
+`npm run start`
+
 # Front End Coding Test
 
 ## Create a real estate property listing widget.
