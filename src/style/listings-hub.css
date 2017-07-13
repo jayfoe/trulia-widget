@@ -2,7 +2,7 @@
   padding: 0 10%;
 }
 
-.btn-default {
+.buttons-container .btn-default {
   border: 0;
   width: 100px;
   margin: 0 2.5px;
@@ -10,12 +10,17 @@
   background-color: #89d128;
 }
 
-.btn-default:hover {
+.buttons-container .btn-default.active {
   background-color: #1377ff;
   color: #ffffff;
 }
 
-.btn-default:focus {
+.buttons-container .btn-default:hover {
+  background-color: #1377ff;
+  color: #ffffff;
+}
+
+.buttons-container .btn-default:focus {
   background-color: #1377ff;
   color: #ffffff;
 }
@@ -26,7 +31,7 @@
 }
 
 @media (max-width:480px) {
-  .btn-default {
+  .buttons-container .btn-default {
     width: 75px;
     flex: 1;
   }

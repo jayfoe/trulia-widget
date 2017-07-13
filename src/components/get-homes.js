@@ -2,13 +2,6 @@ import React, { Component } from 'react';
 import ListingsHub from './listings-hub';
 
 class GetHomes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mergedData: []
-    }
-  }
-
   componentWillMount() {
     let batmanData = window.__BATMAN_DATA__;
     let batmanArray = [];
@@ -87,12 +80,12 @@ class GetHomes extends Component {
       mergedData.push(batmanLookup[key])
     }
 
-    this.setState({ mergedData });
+    return mergedData;
   }
 
   render() {
     return (
-      <ListingsHub mergedData={this.state.mergedData} />
+      <ListingsHub mergedData={this.componentWillMount()} />
     );
   }
 }

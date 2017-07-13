@@ -8,26 +8,27 @@ class ListingsHub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mergedData: this.props.mergedData
+      mergedData: this.props.mergedData,
+      sortedBy: ''
     }
   }
 
-  sortListings(sortOrder) {
+  sortListings(sortedBy) {
     let sortedData = this.state.mergedData;
-    if (sortOrder === 'price') {
+    if (sortedBy === 'price') {
       sortedData = sortedData.sort((a, b) => {
         return (a.price.replace(/,/g,'') - b.price.replace(/,/g,''));
       });
-    } else if (sortOrder === 'beds') {
+    } else if (sortedBy === 'beds') {
       sortedData = sortedData.sort((a, b) => {
         return (a.beds - b.beds);
       });
-    } else if (sortOrder === 'sqft') {
+    } else if (sortedBy === 'sqft') {
       sortedData = sortedData.sort((a, b) => {
         return (a.sqft - b.sqft);
       });
     }
-    this.setState({ mergedData: sortedData });
+    this.setState({ mergedData: sortedData, sortedBy });
   }
 
   render() {
@@ -39,13 +40,13 @@ class ListingsHub extends Component {
       <div className='listings-hub'>
         <h4>Awesome Listings Widget</h4>
         <div className='buttons-container'>
-          <Button onClick={() => this.sortListings('price')}>
+          <Button active={this.state.sortedBy === 'price'} onClick={() => this.sortListings('price')}>
             Price
           </Button>
-          <Button onClick={() => this.sortListings('beds')}>
+          <Button active={this.state.sortedBy === 'beds'} onClick={() => this.sortListings('beds')}>
             Beds
           </Button>
-          <Button onClick={() => this.sortListings('sqft')}>
+          <Button active={this.state.sortedBy === 'sqft'} onClick={() => this.sortListings('sqft')}>
             Sq. ft.
           </Button>
         </div>
